@@ -1,0 +1,104 @@
+//Dans le cas du procedure 
+ALGORITHM produitScalaire
+
+// --------------------------------------------------------------
+// Procédure qui calcule le produit scalaire de deux vecteurs
+// et met le résultat dans une variable passée par référence (VAR)
+// --------------------------------------------------------------
+PROCEDURE dot_product(v1, v2 : TABLEAU DE FLOAT; n : ENTIER; VAR ps : FLOAT)
+VAR
+    i : ENTIER
+BEGIN
+    ps := 0
+    FOR i FROM 0 TO n - 1 STEP 1 DO
+        ps := ps + (v1[i] * v2[i])
+    END_FOR
+END_PROCEDURE
+
+
+// --------------------------------------------------------------
+// Programme principal
+// --------------------------------------------------------------
+VAR
+    tab1, tab2 : TABLEAU DE FLOAT
+    prodScalaire : FLOAT
+    i, n : ENTIER
+
+BEGIN
+    // Lecture de la taille du vecteur
+    WRITE("Donnez la taille du vecteur : ")
+    READ(n)
+
+    // Lecture des éléments du premier vecteur
+    WRITE("Saisir les éléments du premier vecteur : ")
+    FOR i FROM 0 TO n - 1 STEP 1 DO
+        READ(tab1[i])
+    END_FOR
+
+    // Lecture des éléments du deuxième vecteur
+    WRITE("Saisir les éléments du deuxième vecteur : ")
+    FOR i FROM 0 TO n - 1 STEP 1 DO
+        READ(tab2[i])
+    END_FOR
+
+    // Appel de la procédure (ps sera mis à jour)
+    dot_product(tab1, tab2, n, prodScalaire)
+
+    // Vérification de l’orthogonalité
+    IF (prodScalaire = 0) THEN
+        WRITE("Les deux vecteurs sont orthogonaux")
+    ELSE
+        WRITE("Les deux vecteurs ne sont pas orthogonaux")
+    END_IF
+END
+
+
+//Dans le cas du fonction
+// titre de l'algo
+ALGORITHM produitScalaire
+
+//fonction qui calcule le ps de deux vecteurs donnés
+FUNCTION dot_product(v1,v2) : FLOAT  
+VAR
+    ps:FLOAT:=0;
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO v1.length-1 STEP step  DO
+        ps := ps +(v1[i]* v2[i])
+    END_FOR
+   
+    RETURN ps ;
+END
+
+//déclaration
+VAR
+ prodScalaire:FLOAT;
+ i,j,n:INTEGER;
+
+//corps de l'algo
+BEGIN
+// ----------------------------------------------------
+    //lecture des vecteurs (INPUT)
+    // tab1 tab2
+   
+     Write ("Donnez moi la taille")
+ Read(n)
+FOR i FROM 0 TO n-1 STEP 1 DO
+   Read(tab1[i])
+END_FOR
+
+FOR j FROM 0 TO n-1 DO
+   Read(tab2[j])
+END_FOR
+// -------------------------------------------------------------
+    // l'appel de la fonction
+    prodScalaire := dot_product(tab1,tab2)
+//--------------------------------------------------------------
+    //OUTPUT
+    IF (prodScalaire = 0) THEN
+        Write("Les deux vecteurs sont orthogonaux")
+    ELSE
+         Write("Les deux vecteurs ne sont pas orthogonaux")
+    END_IF
+
+END

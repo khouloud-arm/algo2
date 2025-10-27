@@ -1,0 +1,66 @@
+ALGORITHM somme_elements_distincts
+
+VAR
+    tab1 : ARRAY_OF INTEGER[20];
+    tab2 : ARRAY_OF INTEGER[20];
+    sum: INTEGER:=0;
+    trouve: BOOLEAN := FALSE;
+    i,j,n,m:INTEGER;
+
+BEGIN
+//INPUT:lecture des deux tableau
+ Write ("Donnez moi le nombre d'élement dans le premier set")
+ Read(n)
+FOR i FROM 0 TO n-1 STEP 1 DO
+   Read(tab1[i])
+END_FOR
+// tab1=[1,5,7,8]
+ Write ("Donnez moi le nombre d'élement dans le deuxième set")
+ Read(m)
+FOR j FROM 0 TO m-1 DO
+   Read(tab2[j])
+END_FOR
+// -------------------------------------------------------------------
+//traitement
+    // recherche des element du premier tableau dans le deuxieme
+    // je vais faire pour cet exemple i 0--->3
+    
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO     [1,2] [1,4]
+    //   ------------------------------------------------   
+    trouv := FALSE;  //réinitialiser le témoin pour faire une recherche de l'élément           
+       FOR j FROM 0 TO tab2.length-1 STEP 1  DO      
+        IF (tab1[i] = tab2[j]) THEN                                         
+        trouve = TRUE; 
+        BREAK;           
+        END_IF
+       END_FOR
+    // --------------------------------------------------
+    //    je sors soit fin du tableau ou  bien break
+       IF (trouv = FALSE) THEN
+       sum := sum+tab1[i]
+       END_IF
+    END_FOR
+
+     // recherche des element du deuxieme tableau dans le premier
+    FOR i FROM 0 TO tab2.length-1 STEP 1  DO    
+    //   ------------------------------------------------   
+    trouv := FALSE;             
+       FOR j FROM 0 TO tab1.length-1 STEP 1  DO       
+        IF (tab2[i] = tab1[j]) THEN    
+                                       
+        trouve = TRUE; 
+        BREAK;  // sortie une fois je trouve l'égalité: ce n'est pas un élement distinct
+           
+        END_IF
+       END_FOR  // sortie une fois je parcours tous le tableau: c'est un element distinct
+    // --------------------------------------------------
+    //    je sors soit fin du tableau ou  bien break
+       IF (trouv = FALSE) THEN
+       sum := sum+tab2[i]
+       END_IF
+    END_FOR
+    
+
+//OUTPUT
+ Write("La somme des élements distincts est:", sum)
+END
